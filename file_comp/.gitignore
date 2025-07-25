@@ -1,0 +1,29 @@
+# Ignore CLion/JetBrains project files
+.idea/
+*.iml
+
+# Ignore CMake and build artifacts
+cmake-build-*/
+build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+# Ignore compiler output
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore extra files
+external/doc/

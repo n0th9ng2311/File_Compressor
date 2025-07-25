@@ -7,16 +7,6 @@
 *.o
 *.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
 # Compiled Dynamic libraries
 *.so
 *.dylib
@@ -37,5 +27,14 @@
 *.out
 *.app
 
-# debug information files
-*.dwo
+# CMake Outputs
+*.nas.asm
+lame-3.100/config.h
+[Oo]ut/**
+cmake-*/**
+build/**
+install/**
+
+# IDE Temp
+.vs/**
+.idea/**
