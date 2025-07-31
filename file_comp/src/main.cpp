@@ -55,9 +55,9 @@ int main() {
 
     case Type::WAV :
       std::cout<<".wav detected... starting compression!\n";
-    compressWavToMp3(
-  cr.getSrc_path().string(),
-        "D:/output.mp3",
+      compressWavToMp3(
+            cr.getSrc_path().string(),
+            "D:/output.mp3",
             192,
             2,
             printProgress
