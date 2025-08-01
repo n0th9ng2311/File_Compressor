@@ -71,6 +71,13 @@ int main() {
         break;
     case Type::AIFF :
       std::cout<<".aiff detected... starting compression!\n";
+    compressAifftoMp3(
+            cr.getSrc_path().string(),
+            "D:/output.mp3",
+            192,
+            2,
+            printProgress
+        );
       std::cout<<"\nEnding compression!\n";
         break;
 

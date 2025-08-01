@@ -12,8 +12,6 @@ add_executable(file_comp
         hdr/file_comp.h
         hdr/common.h
         hdr/all_comp_algo.h
-#        comp_algo/aiff_wav-/aiff_wav_comp.cpp
-#        comp_algo/aiff_wav-/aiff_wav_comp.h
         comp_algo/bmp_/bmp_comp.cpp
         comp_algo/bmp_/bmp_comp.h
         comp_algo/csv_/csv_comp.cpp
@@ -38,8 +36,8 @@ add_executable(file_comp
         comp_algo/txt_/txt_comp.h
         comp_algo/vhd_/vhd_comp.cpp
         comp_algo/vhd_/vhd_comp.h
-#        comp_algo/aiff_/aiff_comp.cpp
-#        comp_algo/aiff_/aiff_comp.h
+        comp_algo/aiff_/aiff_comp.cpp
+        comp_algo/aiff_/aiff_comp.h
         comp_algo/wav_/wav_comp.h
         comp_algo/wav_/wav_comp.cpp
 )
