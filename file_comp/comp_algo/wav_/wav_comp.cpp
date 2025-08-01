@@ -1,24 +1,24 @@
 #include "wav_comp.h"
 
 
-AudioCompError compressWavToMp3(const std::string &input_path,
-                               const std::string &output_path,
-                               int bitrate,
-                               int quality,
-                               void (*progress_bar)(int)) {
+AudioCompError_WAV compressWavToMp3(const std::string &input_path,
+                                    const std::string &output_path,
+                                    int bitrate,
+                                    int quality,
+                                    void (*progress_bar)(int)) {
 
-    // 1. Load WAV file using AudioFile
+    // Load WAV file using AudioFile
     AudioFile<float> audioFile;
     if (!audioFile.load(input_path)) {
-        return AudioCompError::FILE_OPEN_F;
+        return AudioCompError_WAV::FILE_OPEN_F;
     }
 
     // Verify format is supported
     if (audioFile.getBitDepth() != 16) {
-        return AudioCompError::UNSUPPORTED_FORMAT;
+        return AudioCompError_WAV::UNSUPPORTED_FORMAT;
     }
 
-    // 2. Prepare PCM data for LAME
+    // Prepare PCM data for LAME
     const uint32_t sample_rate = audioFile.getSampleRate();
     const uint16_t num_channels = audioFile.getNumChannels();
     const size_t total_samples = audioFile.getNumSamplesPerChannel();
@@ -32,10 +32,10 @@ AudioCompError compressWavToMp3(const std::string &input_path,
         }
     }
 
-    // 3. Initialize LAME encoder
+    // Initialize LAME encoder
     lame_global_flags* lame = lame_init();
     if (!lame) {
-        return AudioCompError::LAME_INIT_F;
+        return AudioCompError_WAV::LAME_INIT_F;
     }
 
     lame_set_in_samplerate(lame, sample_rate);
@@ -47,14 +47,14 @@ AudioCompError compressWavToMp3(const std::string &input_path,
 
     if (lame_init_params(lame) < 0) {
         lame_close(lame);
-        return AudioCompError::LAME_INIT_F;
+        return AudioCompError_WAV::LAME_INIT_F;
     }
 
     // 4. Open output file
     std::ofstream output_file(output_path, std::ios::binary);
     if (!output_file.is_open()) {
         lame_close(lame);
-        return AudioCompError::OUTPUT_F;
+        return AudioCompError_WAV::OUTPUT_F;
     }
 
     // 5. Encode in chunks
@@ -78,7 +78,8 @@ AudioCompError compressWavToMp3(const std::string &input_path,
             mp3_bytes = lame_encode_buffer(
                                         lame,
                                         pcm_data.data() + i,
-                                        nullptr, remaining,
+                                        nullptr,
+                                        remaining,
                                         mp3_buffer.data(),
                                         mp3_buffer.size());
         }
@@ -86,7 +87,7 @@ AudioCompError compressWavToMp3(const std::string &input_path,
         if (mp3_bytes < 0) {
             lame_close(lame);
             output_file.close();
-            return AudioCompError::ENCODING_F;
+            return AudioCompError_WAV::ENCODING_F;
         }
 
         output_file.write(reinterpret_cast<char*>(mp3_buffer.data()), mp3_bytes);
@@ -111,10 +112,10 @@ AudioCompError compressWavToMp3(const std::string &input_path,
     // Verify output
     std::ifstream check(output_path, std::ios::binary | std::ios::ate);
     if (check.tellg() <= 0) {
-        return AudioCompError::ENCODING_F;
+        return AudioCompError_WAV::ENCODING_F;
     }
 
-    return AudioCompError::SUCCESS;
+    return AudioCompError_WAV::SUCCESS;
 }
 
 void printProgress(int percent) {
