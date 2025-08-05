@@ -14,21 +14,18 @@ void fixCin() {
 }
 
 File_compressor::File_compressor(){
-  std::cout<<"A tool to compress files from terminal\n";
 }
 
 void  File_compressor::choice() {
-    std::cout<<"So you want to compress some files today?\n Sure..\n";
-
     getSrc_user();
-    //checkType();
     //getDst();
 
 }
 
 void File_compressor::getSrc_user(){
    std::string src;
-   std::cout<<"Enter the file name including the complete path and extension: ";
+   std::cout<<"Enter the file name including the complete path and extension (Ex: D:\\text.txt)\n"
+            <<"Enter here: ";
 
    while(true){
       std::getline(std::cin>>std::ws, src);

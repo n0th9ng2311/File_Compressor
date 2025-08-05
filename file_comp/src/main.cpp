@@ -7,6 +7,14 @@ enum class Type;
 
 int main() {
 
+  std::cout << "================================================" << "\n";
+  std::cout << "||        FILE COMPRESSOR v1.0              ||" << "\n";
+  std::cout << "================================================" << "\n";
+  std::cout << "||  Maximize Storage * Minimize File Size   ||" << "\n";
+  std::cout << "||     Lightning-Fast Compression Tool      ||" << "\n";
+  std::cout << "================================================" << "\n\n";
+  std::cout << ">>> Ready to compress your files efficiently! <<<" << "\n\n";
+
   File_compressor cr{};
   cr.choice();
 
@@ -30,7 +38,7 @@ int main() {
 
     case Type::BMP :
       std::cout<<".bmp detected... starting compression!\n";
-      //handel the case
+      bmpToPng(cr.getSrc_path().string(), "D:/sample.png");
         break;
 
     case Type::TIFF :
