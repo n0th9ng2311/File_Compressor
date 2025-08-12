@@ -123,12 +123,21 @@ AudioCompError_AIFF compressAifftoMp3(const std::string& input_path,
         return AudioCompError_AIFF::ENCODING_F;
     }
 
+
+    auto inputF_size = std::filesystem::file_size(input_path);
+    auto outputF_size = std::filesystem::file_size(output_path);
+    double reduction_percent = (static_cast<double>(outputF_size) / inputF_size) * 100.0;
+
+    std::cout<< "\nOriginal Size: "<<inputF_size << " bytes"
+             << "\nCompressed Size: "<<outputF_size << " bytes"
+             << "\nSize reduced to: "<< reduction_percent <<"% of original ";
+
     return AudioCompError_AIFF::SUCCESS;
 }
 
 void print_progress(int percent) {
-    static int last_printed = -5;
-    if (percent >= last_printed + 5 || percent == 100) {
+    static int last_printed = -10;
+    if (percent >= last_printed + 10 || percent == 100) {
         std::cout << "\rProgress: " << percent << "%" << std::flush;
         last_printed = percent;
     }

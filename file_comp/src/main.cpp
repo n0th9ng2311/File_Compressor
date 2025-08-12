@@ -22,7 +22,8 @@ int main() {
 
     case Type::TXT :
       std::cout<<".txt detected... starting compression!\n";
-      compressFile(cr.getSrc_path().string(), "D:/"); //arbitrary outfile location for now
+      compressFile(cr.getSrc_path().string(),
+          cr.getSrc_path().parent_path().string());
       std::cout<<"Ending compression!\n";
       break;
 
@@ -38,7 +39,8 @@ int main() {
 
     case Type::BMP :
       std::cout<<".bmp detected... starting compression!\n";
-      bmpToPng(cr.getSrc_path().string(), "D:/sample.png");
+      bmpToPng(cr.getSrc_path().string(),
+                cr.getSrc_path().replace_extension("png").string());
         break;
 
     case Type::TIFF :
@@ -65,7 +67,7 @@ int main() {
       std::cout<<".wav detected... starting compression!\n";
       compressWavToMp3(
             cr.getSrc_path().string(),
-            "D:/output.mp3",
+            cr.getSrc_path().replace_extension(".mp3").string(),
             192,
             2,
             printProgress
@@ -81,7 +83,7 @@ int main() {
       std::cout<<".aiff detected... starting compression!\n";
     compressAifftoMp3(
             cr.getSrc_path().string(),
-            "D:/output.mp3",
+            cr.getSrc_path().replace_extension(".mp3").string(),
             192,
             2,
             printProgress
