@@ -12,7 +12,7 @@ bool compressCSV(const std::string& input_path,
 
     fs::path temp_input_path = input_path;
     fs::path temp_output_path = output_path;
-    if ( temp_input_path.extension()!= ".csv") {
+    if ( temp_input_path.extension()!= ".csv" && temp_input_path.extension() != ".CSV") {
         std::cerr << "Input file is not a csv file\n";
         return false;
     }
