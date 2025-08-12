@@ -60,7 +60,8 @@ int main() {
 
     case Type::CSV :
       std::cout<<".csv detected... starting compression!\n";
-      //handel the case
+      compressCSV(cr.getSrc_path().string(),
+                  cr.getSrc_path().replace_extension(".csv.gz").string());
         break;
 
     case Type::WAV :
