@@ -135,11 +135,5 @@ AudioCompError_AIFF compressAifftoMp3(const std::string& input_path,
     return AudioCompError_AIFF::SUCCESS;
 }
 
-void print_progress(int percent) {
-    static int last_printed = -10;
-    if (percent >= last_printed + 10 || percent == 100) {
-        std::cout << "\rProgress: " << percent << "%" << std::flush;
-        last_printed = percent;
-    }
-}
+
     
