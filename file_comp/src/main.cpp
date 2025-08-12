@@ -5,7 +5,7 @@
 
 enum class Type;
 
-int main() {
+int main(int argc, char* argv[]) {
 
   std::cout << "================================================" << "\n";
   std::cout << "||        FILE COMPRESSOR v1.0              ||" << "\n";
@@ -15,9 +15,22 @@ int main() {
   std::cout << "================================================" << "\n\n";
   std::cout << ">>> Ready to compress your files efficiently! <<<" << "\n\n";
 
-  File_compressor cr{};
-  cr.choice();
+  File_compressor cr;
 
+  //Working on this feature
+  // if (argc>1) {
+  //   //Command line mode
+  //   std::cout<<"value of parameter at 1: "<<argv[1];
+  //
+  //   std::string file_path = argv[1];
+  //   cr.setSrc(file_path);
+  // }
+  // else {
+  //   //Interactive mode
+  //   cr.choice();
+  // }
+
+  cr.choice();
   switch (static_cast<Type>(cr.checkType())) {
 
     case Type::TXT :
@@ -54,8 +67,9 @@ int main() {
         break;
 
     case Type::LOG :
-    std::cout<<".log detected... starting compression!\n";
-      //handel the case
+      std::cout<<".log detected... starting compression!\n";
+    compressLOG(cr.getSrc_path().string(),
+                cr.getSrc_path().replace_extension(".log.gz").string());
         break;
 
     case Type::CSV :
@@ -118,3 +132,7 @@ int main() {
   }
 
 }
+
+
+
+
