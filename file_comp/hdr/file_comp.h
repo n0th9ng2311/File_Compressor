@@ -1,7 +1,3 @@
-//
-// Created by n0th9ng on 16-07-2025.
-//
-
 #ifndef FILE_COMP_H
 #define FILE_COMP_H
 
@@ -31,7 +27,7 @@ namespace fs = std::filesystem;
 class File_compressor{
 
 public:
-    File_compressor() ;
+    File_compressor();
 
     void setSrc(fs::path path){m_src_path = std::move(path);}
     void setDst(fs::path path){m_dst_path = std::move(path);}
