@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
 
     case Type::LOG :
       std::cout<<".log detected... starting compression!\n";
-    compressLOG(cr.getSrc_path().string(),
+      compressLOG(cr.getSrc_path().string(),
                 cr.getSrc_path().replace_extension(".log.gz").string());
         break;
 
@@ -90,13 +90,14 @@ int main(int argc, char* argv[]) {
     std::cout<<"\nEnding compression!\n";
         break;
 
-    case Type::FLAC :
-      std::cout<<".flac detected... starting compression!\n";
-      //handel the case
+    case Type::XML :
+      std::cout<<".xml detected... starting compression!\n";
+      compressXML(cr.getSrc_path().string(),
+                cr.getSrc_path().replace_extension(".xml.gz").string());
         break;
     case Type::AIFF :
       std::cout<<".aiff detected... starting compression!\n";
-    compressAifftoMp3(
+      compressAifftoMp3(
             cr.getSrc_path().string(),
             cr.getSrc_path().replace_extension(".mp3").string(),
             192,

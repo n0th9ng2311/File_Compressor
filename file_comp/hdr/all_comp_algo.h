@@ -9,7 +9,7 @@
 #include "../comp_algo/wav_/wav_comp.h"
 #include "../comp_algo/bmp_/bmp_comp.h"
 #include "../comp_algo/csv_/csv_comp.h"
-#include "../comp_algo/flac_/flac_comp.h"
+#include "../comp_algo/xml_/xml_comp.h"
 #include "../comp_algo/iso_/iso_comp.h"
 #include "../comp_algo/jpg_/jpg_comp.h"
 #include "../comp_algo/log_/log_comp.h"
@@ -19,6 +19,5 @@
 #include "../comp_algo/tiff_/tiff_comp.h"
 #include "../comp_algo/txt_/txt_comp.h"
 #include "../comp_algo/vhd_/vhd_comp.h"
-
 
 #endif //ALL_COMP_ALGO_H

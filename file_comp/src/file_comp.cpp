@@ -72,7 +72,7 @@ int File_compressor::checkType() const {
         {".txt", Type::TXT}, {".jpg",  Type::JPG}, {".jpeg", Type::JPG},
         {".png", Type::PNG}, {".bmp",  Type::BMP}, {".tiff", Type::TIFF},
         {".psd", Type::PSD}, {".log",  Type::LOG}, {".csv",  Type::CSV},
-        {".wav", Type::WAV}, {".flac", Type::FLAC},{".aiff", Type::AIFF},
+        {".wav", Type::WAV}, {".xml", Type::XML},{".aiff", Type::AIFF},
         {".iso", Type::ISO}, {".tar",  Type::TAR}, {".vhd",  Type::VHD}
     };
 

@@ -15,7 +15,7 @@ enum class Type : int
     LOG = 7,
     CSV = 8,
     WAV = 9,
-    FLAC = 10,
+    XML = 10,
     AIFF = 11,
     ISO = 12,
     TAR = 13,

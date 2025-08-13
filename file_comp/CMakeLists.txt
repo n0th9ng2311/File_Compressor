@@ -16,8 +16,8 @@ add_executable(file_comp
         comp_algo/bmp_/bmp_comp.h
         comp_algo/csv_/csv_comp.cpp
         comp_algo/csv_/csv_comp.h
-        comp_algo/flac_/flac_comp.cpp
-        comp_algo/flac_/flac_comp.h
+        comp_algo/xml_/xml_comp.cpp
+        comp_algo/xml_/xml_comp.h
         comp_algo/iso_/iso_comp.cpp
         comp_algo/iso_/iso_comp.h
         comp_algo/jpg_/jpg_comp.cpp
