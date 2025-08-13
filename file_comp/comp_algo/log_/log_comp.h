@@ -1,5 +1,5 @@
-#ifndef log_comp_h
-#define log_comp_h
+#ifndef LOG_COMP_H
+#define LOG_COMP_H
 
 #include"..\..\hdr\common.h"
 #include"zlib.h"
