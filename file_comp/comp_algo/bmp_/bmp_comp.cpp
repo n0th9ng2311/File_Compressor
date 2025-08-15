@@ -8,9 +8,22 @@
 
 #include "bmp_comp.h"
 
-bool bmpToPng(const std::string &input_path,
+namespace fs = std::filesystem;
+
+BMPCompError bmpToPng(const std::string &input_path,
               const std::string &output_path,
               int compression) {
+
+    if (!fs::exists(input_path)) {
+        std::cerr<< "File not found\n";
+        return BMPCompError::FILE_OPEN_F;
+    }
+
+    if (fs::path(input_path).extension() != ".bmp"
+        && fs::path(input_path).extension() != ".BMP") {
+        std::cerr<< "File is not a bmp file\n";
+        return BMPCompError::INVALID_FILE_TYPE;
+    }
 
     //Loading in the BMP
     int width{};
@@ -27,10 +40,24 @@ bool bmpToPng(const std::string &input_path,
 
     if (!data) {
         std::cerr<< "Error loading BMP: "<< stbi_failure_reason() << "\n";
-        return false;
+        return BMPCompError::FILE_OPEN_F;
     }
 
+    if (width <= 0 || height <= 0 || (channels != 3 && channels != 4)) {
+        std::cerr << "Loaded BMP has invalid dimensions or unsupported channel count\n";
+        return BMPCompError::INVALID_CONFIG;
+    }
+
+
     //converting to PNG
+    auto out_parent = std::filesystem::path(output_path).parent_path();
+    if (!out_parent.empty() && !fs::exists(out_parent)) {
+        if (!fs::create_directories(out_parent)) {
+            std::cerr << "Could not create output directory\n";
+            return BMPCompError::OUTPUT_F;
+        }
+    }
+
     const int stride = width * channels;
     if (!stbi_write_png(output_path.c_str(),
                         width,
@@ -40,9 +67,8 @@ bool bmpToPng(const std::string &input_path,
                         stride)) {
 
         std::cerr<< "Error saving PNG\n";
-        return false;
+        return BMPCompError::ENCODING_F;
     }
-    return true;
-
+    return BMPCompError::SUCCESS;
 }
 
