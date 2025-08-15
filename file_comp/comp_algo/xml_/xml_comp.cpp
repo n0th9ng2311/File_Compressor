@@ -2,7 +2,7 @@
 
 namespace fs = std::filesystem;
 XMLCompError compressXML(const std::string& input_path,
-                 const std::string& output_path) {
+                        const std::string& output_path) {
 
     //Verifying if the file exists and if it is a xml
     if (!fs::exists(input_path)) {
