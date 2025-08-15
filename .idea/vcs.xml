@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/file_comp/external/libtiff/libtiff" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/file_comp/external/stb" vcs="Git" />
   </component>
 </project>
