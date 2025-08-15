@@ -107,9 +107,10 @@ int main(int argc, char* argv[]) {
       std::cout<<"\nEnding compression!\n";
         break;
 
-    case Type::ISO :
-      std::cout<<".iso detected... starting compression!\n";
-      //handel the case
+    case Type::JSON :
+      std::cout<<".json detected... starting compression!\n";
+      compressLOG(cr.getSrc_path().string(),
+                 cr.getSrc_path().replace_extension(".json.gz").string());
         break;
 
     case Type::TAR :

@@ -18,8 +18,8 @@ add_executable(file_comp
         comp_algo/csv_/csv_comp.h
         comp_algo/xml_/xml_comp.cpp
         comp_algo/xml_/xml_comp.h
-        comp_algo/iso_/iso_comp.cpp
-        comp_algo/iso_/iso_comp.h
+        comp_algo/json_/json_comp.cpp
+        comp_algo/json_/json_comp.h
         comp_algo/jpg_/jpg_comp.cpp
         comp_algo/jpg_/jpg_comp.h
         comp_algo/log_/log_comp.cpp

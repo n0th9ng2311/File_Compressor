@@ -10,7 +10,7 @@
 #include "../comp_algo/bmp_/bmp_comp.h"
 #include "../comp_algo/csv_/csv_comp.h"
 #include "../comp_algo/xml_/xml_comp.h"
-#include "../comp_algo/iso_/iso_comp.h"
+#include "../comp_algo/json_/json_comp.h"
 #include "../comp_algo/jpg_/jpg_comp.h"
 #include "../comp_algo/log_/log_comp.h"
 #include "../comp_algo/png_/png_comp.h"

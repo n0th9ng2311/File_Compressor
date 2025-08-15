@@ -17,7 +17,7 @@ enum class Type : int
     WAV = 9,
     XML = 10,
     AIFF = 11,
-    ISO = 12,
+    JSON = 12,
     TAR = 13,
     VHD = 14,
   };

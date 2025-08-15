@@ -69,11 +69,11 @@ int File_compressor::checkType() const {
     std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
 
     static const std::unordered_map<std::string, Type> ext_to_type = {
-        {".txt", Type::TXT}, {".jpg",  Type::JPG}, {".jpeg", Type::JPG},
-        {".png", Type::PNG}, {".bmp",  Type::BMP}, {".tiff", Type::TIFF},
-        {".psd", Type::PSD}, {".log",  Type::LOG}, {".csv",  Type::CSV},
-        {".wav", Type::WAV}, {".xml", Type::XML},{".aiff", Type::AIFF},
-        {".iso", Type::ISO}, {".tar",  Type::TAR}, {".vhd",  Type::VHD}
+        {".txt", Type::TXT},    {".jpg",  Type::JPG},   {".jpeg", Type::JPG},
+        {".png", Type::PNG},    {".bmp",  Type::BMP},   {".tiff", Type::TIFF},
+        {".psd", Type::PSD},    {".log",  Type::LOG},   {".csv",  Type::CSV},
+        {".wav", Type::WAV},    {".xml", Type::XML},    {".aiff", Type::AIFF},
+        {".json", Type::JSON},  {".tar",  Type::TAR},   {".vhd",  Type::VHD}
     };
 
     auto it = ext_to_type.find(ext);
