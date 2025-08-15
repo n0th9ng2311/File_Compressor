@@ -56,9 +56,11 @@ int main(int argc, char* argv[]) {
                 cr.getSrc_path().replace_extension("png").string());
         break;
 
-    case Type::TIFF :
+      case Type::TIFF :
       std::cout<<".tiff detected... starting compression!\n";
-      //handel the case
+      compressTiff(cr.getSrc_path().string(),
+                   cr.getSrc_path().parent_path().string()
+                    +"/"+ (cr.getSrc_path().stem().string() + "_DEF.tif"));
         break;
 
     case Type::PSD :

@@ -49,6 +49,7 @@ find_package(ZLIB REQUIRED)
 add_subdirectory(external/audio-adpcm-cpp)
 add_subdirectory(external/lame)
 add_subdirectory(external/audioFile)
+add_subdirectory(external/libtiff)
 
 
 # Link libraries
@@ -58,6 +59,7 @@ target_link_libraries(file_comp
         adpcm
         ZLIB::ZLIB
         AudioFile
+        tiff
 )
 
 # Include directories
