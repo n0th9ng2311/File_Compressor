@@ -10,8 +10,21 @@
 #include<assert.h>
 #include<zlib.h>
 
-bool compressFile(const std::string& inputPath, const std::string& outputPath);
-bool decompressFile(const std::string& inputPath, const std::string& outputPath);
+enum class TXTCompError {
+    SUCCESS,
+    FILE_OPEN_F,
+    INVALID_FILE_TYPE,
+    FILE_READING_F,
+    FILE_WRITING_F,
+    ENCODING_F,
+    OUTPUT_F,
+    UNSUPPORTED_FORMAT
+};
+TXTCompError compressFile(const std::string& inputPath,
+                         const std::string& outputPath);
+
+bool decompressFile(const std::string& inputPath,
+                    const std::string& outputPath);
 
 
 #endif //TXT_COMP_H

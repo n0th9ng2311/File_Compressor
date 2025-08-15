@@ -3,36 +3,37 @@
 //
 #include "txt_comp.h"
 #include "../../hdr/common.h"
+#include "../log_/log_comp.h"
 
 namespace fs = std::filesystem;
 
-bool compressFile(const std::string& input_path_str, const std::string& output_dir_str) {
+TXTCompError compressFile(const std::string& input_path_str,
+                         const std::string& output_dir_str) {
     fs::path input_path(input_path_str);
     fs::path output_dir(output_dir_str);
 
     // Validate input file
-    if (!fs::exists(input_path)) {
+    if (!fs::exists(fs::path(input_path))) {
         std::cerr << "Input file does not exist: " << input_path << std::endl;
-        return false;
+        return TXTCompError::FILE_OPEN_F;
     }
 
-    // Check if input is a file
-    if (!fs::is_regular_file(input_path)) {
-        std::cerr << "Input path is not a regular file: " << input_path << std::endl;
-        return false;
+    if (input_path.extension() != ".txt" && input_path.extension() != ".TXT") {
+        std::cerr<< "Input file is not txt file\n";
+        return TXTCompError::FILE_OPEN_F;
     }
 
     // Check if output directory exists
     if (!fs::exists(output_dir)) {
         std::cerr << "Output directory does not exist: " << output_dir << std::endl;
-        return false;
+        return TXTCompError::OUTPUT_F;
     }
 
     // Open input file
     std::ifstream input_file(input_path, std::ios::binary); //opening in binary to avoid
     if (!input_file) {                                           //memory corruption(zlib guy said so)
         std::cerr << "Failed to open input file: " << input_path << std::endl;
-        return false;
+        return TXTCompError::FILE_OPEN_F;
     }
 
     // Read file into memory
@@ -44,7 +45,7 @@ bool compressFile(const std::string& input_path_str, const std::string& output_d
 
     if (inputData.empty()) {
         std::cerr << "Input file is empty: " << input_path << std::endl;
-        return false;
+        return TXTCompError::FILE_READING_F;
     }
 
     // Prepare buffer for compression
@@ -60,7 +61,7 @@ bool compressFile(const std::string& input_path_str, const std::string& output_d
 
     if (result != Z_OK) {
         std::cerr << "Compression failed. Zlib error code: " << result << std::endl;
-        return false;
+        return TXTCompError::ENCODING_F;
     }
 
     // Construct output file path: output_dir/compressed_<filename>.z
@@ -71,10 +72,13 @@ bool compressFile(const std::string& input_path_str, const std::string& output_d
     std::ofstream output_file(output_path, std::ios::binary);
     if (!output_file) {
         std::cerr << "Failed to create output file: " << output_path << std::endl;
-        return false;
+        return TXTCompError::OUTPUT_F;
     }
 
-    output_file.write(reinterpret_cast<char*>(compressed_data.data()), compressed_size);
+    if (!output_file.write(reinterpret_cast<char*>(compressed_data.data()), compressed_size)) {
+        std::cerr<< "Error writing to output file\n";
+        return TXTCompError::FILE_WRITING_F;
+    }
     output_file.close();
 
     std::cout << "Compression successful.\n";
@@ -83,7 +87,7 @@ bool compressFile(const std::string& input_path_str, const std::string& output_d
     std::cout << "Original size: " << inputData.size()
               << " bytes, Compressed size: " << compressed_size << " bytes\n";
 
-    return true;
+    return TXTCompError::SUCCESS;
 }
 
 // Function to decompress a file using zlib
