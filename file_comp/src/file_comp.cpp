@@ -1,6 +1,3 @@
-//
-// Created by n0th9ng  on 16-07-2025.
-//
 #include "../hdr/file_comp.h"
 #include "../hdr/common.h"
 #include "../hdr/all_comp_algo.h"
@@ -95,7 +92,7 @@ void compress_switch(File_compressor& cr) {
     case Type::TXT :
       std::cout<<".txt detected... starting compression!\n";
       compressFile(src_path_str,
-          src_path.parent_path().string());
+                  src_path.parent_path().string());
       std::cout<<"Ending compression!\n";
       break;
 
@@ -112,14 +109,14 @@ void compress_switch(File_compressor& cr) {
     case Type::BMP :
       std::cout<<".bmp detected... starting compression!\n";
       bmpToPng(src_path_str,
-                src_path.replace_extension("png").string());
+              src_path.replace_extension("png").string());
         break;
 
       case Type::TIFF :
       std::cout<<".tiff detected... starting compression!\n";
       compressTiff(src_path_str,
-                   src_path.parent_path().string()
-                    +"/"+ (src_path.stem().string() + "_DEF.tif"));
+                   src_path.parent_path().string() +
+                     "/"+ (src_path.stem().string() + "_DEF.tif"));
         break;
 
     case Type::PSD :
@@ -130,23 +127,22 @@ void compress_switch(File_compressor& cr) {
     case Type::LOG :
       std::cout<<".log detected... starting compression!\n";
       compressLOG(src_path_str,
-                src_path.replace_extension(".log.gz").string());
+                 src_path.replace_extension(".log.gz").string());
         break;
 
     case Type::CSV :
       std::cout<<".csv detected... starting compression!\n";
       compressCSV(src_path_str,
-                  src_path.replace_extension(".csv.gz").string());
+                 src_path.replace_extension(".csv.gz").string());
         break;
 
     case Type::WAV :
       std::cout<<".wav detected... starting compression!\n";
-      compressWavToMp3(
-            src_path_str,
+      compressWavToMp3(src_path_str,
             src_path.replace_extension(".mp3").string(),
-            192,
-            2,
-            printProgress
+                192,
+                2,
+                      printProgress
         );
     std::cout<<"\nEnding compression!\n";
         break;
@@ -154,16 +150,15 @@ void compress_switch(File_compressor& cr) {
     case Type::XML :
       std::cout<<".xml detected... starting compression!\n";
       compressXML(src_path_str,
-                src_path.replace_extension(".xml.gz").string());
+                 src_path.replace_extension(".xml.gz").string());
         break;
     case Type::AIFF :
       std::cout<<".aiff detected... starting compression!\n";
-      compressAifftoMp3(
-            src_path_str,
-            src_path.replace_extension(".mp3").string(),
-            192,
-            2,
-            printProgress
+      compressAifftoMp3(src_path_str,
+                       src_path.replace_extension(".mp3").string(),
+                    192,
+                    2,
+                          printProgress
         );
       std::cout<<"\nEnding compression!\n";
         break;

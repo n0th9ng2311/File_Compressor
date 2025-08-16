@@ -1,7 +1,5 @@
-
 #include "../hdr/all_comp_algo.h"
 #include "../hdr/file_comp.h"
-
 
 enum class Type;
 
