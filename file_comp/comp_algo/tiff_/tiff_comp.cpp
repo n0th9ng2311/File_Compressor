@@ -1,6 +1,5 @@
 #include "tiff_comp.h"
 
-
 namespace fs = std::filesystem;
 
 TIFFCompError compressTiff(const std::string& input_path,
@@ -97,13 +96,7 @@ TIFFCompError compressTiff(const std::string& input_path,
     TIFFClose(input_file);
     TIFFClose(output_file);
 
-    auto inputF_size = fs::file_size(input_path);
-    auto outputF_size = fs::file_size(output_path);
-    double reduction_percent = (static_cast<double>(outputF_size) / inputF_size) * 100.0;
-
-    std::cout<< "\nOriginal Size: "<<inputF_size << " bytes"
-             << "\nCompressed Size: "<<outputF_size << " bytes"
-             << "\nSize reduced to: "<< reduction_percent <<"% of original ";
+    printCompSize(temp_input_path, temp_output_path);
 
     return TIFFCompError::SUCCESS;
 }

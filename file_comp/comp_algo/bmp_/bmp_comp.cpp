@@ -11,8 +11,11 @@
 namespace fs = std::filesystem;
 
 BMPCompError bmpToPng(const std::string &input_path,
-              const std::string &output_path,
-              int compression) {
+                      const std::string &output_path,
+                      int compression) {
+
+    fs::path temp_input_path = input_path;
+    fs::path temp_output_path = output_path;
 
     if (!fs::exists(input_path)) {
         std::cerr<< "File not found\n";
@@ -69,6 +72,9 @@ BMPCompError bmpToPng(const std::string &input_path,
         std::cerr<< "Error saving PNG\n";
         return BMPCompError::ENCODING_F;
     }
+
+    printCompSize(temp_input_path, temp_output_path);
+
     return BMPCompError::SUCCESS;
 }
 

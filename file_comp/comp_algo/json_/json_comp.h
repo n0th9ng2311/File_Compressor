@@ -5,7 +5,6 @@
 #include "zlib.h"
 
 
-
 enum class JSONCompError {
     SUCCESS,
     FILE_OPEN_F,

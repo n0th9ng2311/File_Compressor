@@ -81,11 +81,8 @@ TXTCompError compressFile(const std::string& input_path_str,
     }
     output_file.close();
 
-    std::cout << "Compression successful.\n";
-    std::cout << "Input: " << input_path << "\n";
-    std::cout << "Output: " << output_path << "\n";
-    std::cout << "Original size: " << inputData.size()
-              << " bytes, Compressed size: " << compressed_size << " bytes\n";
+    printCompSize(input_path, output_path);
+
 
     return TXTCompError::SUCCESS;
 }

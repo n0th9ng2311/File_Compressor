@@ -1,18 +1,17 @@
-
 #include "json_comp.h"
 
 namespace fs = std::filesystem;
 JSONCompError compressJSON(const std::string& input_path,
                         const std::string& output_path) {
 
+    fs::path temp_input_path = input_path;
+    fs::path temp_output_path = output_path;
+
     //Verifying if the file exists and if it is a xml
     if (!fs::exists(input_path)) {
         std::cerr << "Input file not exists\n";
         return JSONCompError::FILE_OPEN_F;
     }
-
-    fs::path temp_input_path = input_path;
-    fs::path temp_output_path = output_path;
     if ( temp_input_path.extension()!= ".json" && temp_input_path.extension() != ".JSON") {
         std::cerr << "Input file is not a json file\n";
         return JSONCompError::INVALID_FILE_TYPE;
@@ -63,13 +62,7 @@ JSONCompError compressJSON(const std::string& input_path,
 
     output_file.close();
 
-    auto inputF_size = fs::file_size(input_path);
-    auto outputF_size = fs::file_size(output_path);
-    double reduction_percent = (static_cast<double>(outputF_size) / inputF_size) * 100.0;
-
-    std::cout<< "\nOriginal Size: "<<inputF_size << " bytes"
-             << "\nCompressed Size: "<<outputF_size << " bytes"
-             << "\nSize reduced to: "<< reduction_percent <<"% of original ";
+    printCompSize(temp_input_path, temp_output_path);
 
     return JSONCompError::SUCCESS;
 }
