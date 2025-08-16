@@ -1,29 +1,55 @@
-# Ignore CLion/JetBrains project files
+# Ignore CLion project files
 .idea/
 *.iml
 
-# Ignore CMake and build artifacts
+# Ignore CMake build directories and files
 cmake-build-*/
 build/
 CMakeFiles/
 CMakeCache.txt
 Makefile
+cmake_install.cmake
 
-# Ignore compiler output
+# Ignore compiler and linker output
 *.o
 *.obj
 *.exe
 *.out
 *.a
 *.so
+*.dll
 
-# Ignore system files
+# Ignore temporary/intermediate files
+*.tmp
+*.temp
+
+# Ignore logs
+*.log
+
+# Ignore system-specific files
 .DS_Store
 Thumbs.db
 
-# Ignore logs and temporary files
-*.log
-*.tmp
+# Ignore coverage reports and test outputs
+coverage/
+*.gcda
+*.gcno
+*.gcov
 
-# Ignore extra files
+# Ignore external documentation and built files
 external/doc/
+
+# Ignore user-specific files
+*.user
+*.user.*
+
+# Ignore JetBrains specific folders and caches
+.idea/*
+!.idea/fileTemplates
+!.idea/inspectionProfiles
+!.idea/dictionaries
+!.idea/shelf
+
+# Ignore backup or swap files (vi/vim, etc.)
+*~
+.*.swp
