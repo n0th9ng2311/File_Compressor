@@ -3,6 +3,7 @@
 //
 #include "../hdr/file_comp.h"
 #include "../hdr/common.h"
+#include "../hdr/all_comp_algo.h"
 
 //adding an enum class here to assist with the return of checkType() fcn, probably the result from that
 //will be fed into a switch statement that will handel the cases
@@ -69,11 +70,11 @@ int File_compressor::checkType() const {
     std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
 
     static const std::unordered_map<std::string, Type> ext_to_type = {
-        {".txt", Type::TXT},    {".jpg",  Type::JPG},   {".jpeg", Type::JPG},
-        {".png", Type::PNG},    {".bmp",  Type::BMP},   {".tiff", Type::TIFF},
-        {".psd", Type::PSD},    {".log",  Type::LOG},   {".csv",  Type::CSV},
-        {".wav", Type::WAV},    {".xml", Type::XML},    {".aiff", Type::AIFF},
-        {".json", Type::JSON},  {".tar",  Type::TAR},   {".vhd",  Type::VHD}
+        {".txt",  Type::TXT},    {".jpg",  Type::JPG},    {".jpeg", Type::JPG},
+        {".png",  Type::PNG},    {".bmp",  Type::BMP},    {".tiff", Type::TIFF},
+        {".psd",  Type::PSD},    {".log",  Type::LOG},    {".csv",  Type::CSV},
+        {".wav",  Type::WAV},    {".xml",  Type::XML},    {".aiff", Type::AIFF},
+        {".json", Type::JSON},   {".tar",  Type::TAR},    {".vhd",  Type::VHD}
     };
 
     auto it = ext_to_type.find(ext);
@@ -82,4 +83,115 @@ int File_compressor::checkType() const {
     }
 
     return static_cast<int>(Type::NO_EXIST);
+}
+
+void compress_switch(File_compressor& cr) {
+
+    auto src_path_str = cr.getSrc_path().string();
+    auto src_path = cr.getSrc_path();
+
+    switch (static_cast<Type>(cr.checkType())) {
+
+    case Type::TXT :
+      std::cout<<".txt detected... starting compression!\n";
+      compressFile(src_path_str,
+          src_path.parent_path().string());
+      std::cout<<"Ending compression!\n";
+      break;
+
+    case Type::PNG :
+      std::cout<<".png detected... starting compression!\n";
+      //handel the case
+        break;
+
+    case Type::JPG :
+      std::cout<<".jpg detected... starting compression!\n";
+      //handel the case
+        break;
+
+    case Type::BMP :
+      std::cout<<".bmp detected... starting compression!\n";
+      bmpToPng(src_path_str,
+                src_path.replace_extension("png").string());
+        break;
+
+      case Type::TIFF :
+      std::cout<<".tiff detected... starting compression!\n";
+      compressTiff(src_path_str,
+                   src_path.parent_path().string()
+                    +"/"+ (src_path.stem().string() + "_DEF.tif"));
+        break;
+
+    case Type::PSD :
+      std::cout<<".psd detected... starting compression!\n";
+      //handel the case
+        break;
+
+    case Type::LOG :
+      std::cout<<".log detected... starting compression!\n";
+      compressLOG(src_path_str,
+                src_path.replace_extension(".log.gz").string());
+        break;
+
+    case Type::CSV :
+      std::cout<<".csv detected... starting compression!\n";
+      compressCSV(src_path_str,
+                  src_path.replace_extension(".csv.gz").string());
+        break;
+
+    case Type::WAV :
+      std::cout<<".wav detected... starting compression!\n";
+      compressWavToMp3(
+            src_path_str,
+            src_path.replace_extension(".mp3").string(),
+            192,
+            2,
+            printProgress
+        );
+    std::cout<<"\nEnding compression!\n";
+        break;
+
+    case Type::XML :
+      std::cout<<".xml detected... starting compression!\n";
+      compressXML(src_path_str,
+                src_path.replace_extension(".xml.gz").string());
+        break;
+    case Type::AIFF :
+      std::cout<<".aiff detected... starting compression!\n";
+      compressAifftoMp3(
+            src_path_str,
+            src_path.replace_extension(".mp3").string(),
+            192,
+            2,
+            printProgress
+        );
+      std::cout<<"\nEnding compression!\n";
+        break;
+
+    case Type::JSON :
+      std::cout<<".json detected... starting compression!\n";
+      compressLOG(src_path_str,
+                 src_path.replace_extension(".json.gz").string());
+        break;
+
+    case Type::TAR :
+      std::cout<<".tar detected... starting compression!\n";
+      //handel the case
+        break;
+
+    case Type::VHD :
+      std::cout<<".vhd detected... starting compression!\n";
+      //handel the case
+        break;
+
+    case Type::NO_EXIST :
+      std::cout<<"File does not exist\n";
+      //handel the case
+        break;
+
+    default:
+      std::cout<<"Unknown file_format\n";
+        break;
+  }
+
 }

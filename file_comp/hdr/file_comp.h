@@ -46,4 +46,7 @@ private:
     fs::path m_src_path{};
     fs::path m_dst_path{};
 };
+
+void compress_switch(File_compressor& cr);
+
 #endif //FILE_COMP_H
