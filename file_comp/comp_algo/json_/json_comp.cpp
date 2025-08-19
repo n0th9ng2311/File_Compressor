@@ -7,7 +7,7 @@ JSONCompError compressJSON(const std::string& input_path,
     fs::path temp_input_path = input_path;
     fs::path temp_output_path = output_path;
 
-    //Verifying if the file exists and if it is a xml
+    //Verifying if the file exists and if it is a json
     if (!fs::exists(input_path)) {
         std::cerr << "Input file not exists\n";
         return JSONCompError::FILE_OPEN_F;
