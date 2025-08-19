@@ -3,12 +3,18 @@
 *.iml
 
 # Ignore CMake build directories and files
-cmake-build-*/
 build/
+cmake-build-*/
 CMakeFiles/
 CMakeCache.txt
 Makefile
 cmake_install.cmake
+#but NOT inside external/
+!external/**/build/
+!external/**/CMakeFiles/
+!external/**/CMakeCache.txt
+!external/**/Makefile
+!external/**/cmake_install.cmake
 
 # Ignore compiler and linker output
 *.o
