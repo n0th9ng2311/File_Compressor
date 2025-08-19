@@ -19,7 +19,7 @@ PSDCompError compressPSD(const std::string& input_path,
         return PSDCompError::INVALID_FILE_TYPE;
     }
 
-    //Reading the xml file
+    //Reading the PSD file
     std::ifstream input_file(input_path, std::ios::binary);
     if (!input_file.is_open()) {
         std::cerr << "Input file is not open\n";
