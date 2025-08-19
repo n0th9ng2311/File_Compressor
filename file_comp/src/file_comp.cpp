@@ -121,7 +121,9 @@ void compress_switch(File_compressor& cr) {
 
     case Type::PSD :
       std::cout<<".psd detected... starting compression!\n";
-      //handel the case
+        compressPSD(src_path_str,
+                    src_path.parent_path().string() +
+                    "/" + (src_path.stem().string() + "_DEF.psd"));
         break;
 
     case Type::LOG :

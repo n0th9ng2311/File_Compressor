@@ -14,22 +14,23 @@ int main(int argc, char* argv[]) {
   std::cout << ">>> Ready to compress your files efficiently! <<<" << "\n\n";
 
   File_compressor file_compressor;
-
-  //Working on this feature
+  //
+  // //Working on this feature
   // if (argc>1) {
   //   //Command line mode
-  //   std::cout<<"value of parameter at 1: "<<argv[1];
+  //   std::cout<<"value of parameter at 1: "<<argv[1]<<std::endl;
   //
   //   std::string file_path = argv[1];
-  //   cr.setSrc(file_path);
+  //   file_compressor.setSrc(file_path);
+  //   compress_switch(file_compressor);
   // }
   // else {
   //   //Interactive mode
-  //   cr.choice();
+  //   file_compressor.choice();
+  //   compress_switch(file_compressor);
   // }
 
   file_compressor.choice();
-
   compress_switch(file_compressor);
 
   return 0;
