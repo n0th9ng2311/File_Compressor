@@ -5,7 +5,6 @@
 
 #include"..\..\hdr\common.h"
 #include "zlib.h"
-#include "libpsd.h"
 
 
 enum class PSDCompError {
