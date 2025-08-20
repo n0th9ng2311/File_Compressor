@@ -12,8 +12,10 @@ enum class BMPCompError {
 
 };
 
-BMPCompError bmpToPng(const std::string& input_path,
-              const std::string& output_path,
-              int compression = 6);
+BMPCompError
+bmpToPng(
+    const std::string& input_path,
+    const std::string& output_path,
+    int compression = 6);
 
 #endif

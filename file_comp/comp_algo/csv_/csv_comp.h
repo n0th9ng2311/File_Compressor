@@ -18,7 +18,9 @@ enum class CSVCompError {
     UNSUPPORTED_FORMAT
 };
 
-CSVCompError compressCSV(const std::string& input_path,
-                const std::string& output_path);
+CSVCompError
+compressCSV(
+    const std::string& input_path,
+    const std::string& output_path);
 
 #endif

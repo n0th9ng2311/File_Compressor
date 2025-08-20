@@ -15,6 +15,9 @@ enum class LOGCompError {
     UNSUPPORTED_FORMAT
 };
 
-LOGCompError compressLOG(const std::string& input_path,
-                const std::string& output_path);
+LOGCompError
+compressLOG(
+    const std::string& input_path,
+    const std::string& output_path);
+
 #endif

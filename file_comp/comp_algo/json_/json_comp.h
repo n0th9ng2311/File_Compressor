@@ -16,8 +16,10 @@ enum class JSONCompError {
     UNSUPPORTED_FORMAT
 };
 
-JSONCompError compressJSON(const std::string& input_path,
-                        const std::string& output_path);
+JSONCompError
+compressJSON(
+    const std::string& input_path,
+    const std::string& output_path);
 
 
 

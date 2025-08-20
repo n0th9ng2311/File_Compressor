@@ -3,9 +3,11 @@
 #include "psd_comp.h"
 
 namespace fs = std::filesystem;
-PSDCompError compressPSD(const std::string& input_path,
-                        const std::string& output_path) {
-
+PSDCompError
+compressPSD(
+    const std::string& input_path,
+    const std::string& output_path) {
+    //temp path variables to check difference between raw and compressed file later
     fs::path temp_input_path = input_path;
     fs::path temp_output_path = output_path;
 
@@ -14,12 +16,13 @@ PSDCompError compressPSD(const std::string& input_path,
         std::cerr << "Input file not exists\n";
         return PSDCompError::FILE_OPEN_F;
     }
-    if ( temp_input_path.extension()!= ".psd" && temp_input_path.extension() != ".PSD") {
+    if ( temp_input_path.extension()!= ".psd"
+        && temp_input_path.extension() != ".PSD") {
         std::cerr << "Input file is not a PSD file\n";
         return PSDCompError::INVALID_FILE_TYPE;
     }
 
-    //Reading the PSD file
+    //Checking if the file is open
     std::ifstream input_file(input_path, std::ios::binary);
     if (!input_file.is_open()) {
         std::cerr << "Input file is not open\n";
@@ -29,6 +32,7 @@ PSDCompError compressPSD(const std::string& input_path,
     auto file_size = fs::file_size(input_path);
     std::vector<char> input_data(file_size);
 
+    //Reading the whole psd file into memory(for now, will chunk encode later)
     if (!input_file.read(input_data.data(), file_size)) {
         std::cerr << "Input file is not read\n";
         return PSDCompError::FILE_READING_F;
@@ -37,26 +41,29 @@ PSDCompError compressPSD(const std::string& input_path,
     uLongf compressed_size = compressBound(input_data.size());
     std::vector<Bytef> compressed_data(compressed_size);
 
-    //prepare for compression
-    auto result = compress2(compressed_data.data(),
-                                &compressed_size,
-                                reinterpret_cast<const Bytef*>(input_data.data()), file_size,
-                            Z_BEST_COMPRESSION);
+    //Compressing the data
+    auto result =
+        compress2(
+            compressed_data.data(), &compressed_size,
+                 reinterpret_cast<const Bytef*>(input_data.data()), file_size,
+                 Z_BEST_COMPRESSION
+        );
 
+    //Checking if the result is valid
     if (result != Z_OK) {
         std::cerr<< "Compression failed with error code: " << result<<"\n";
         return PSDCompError::ENCODING_F;
     }
 
-    //Writing compressed data
-    fs::create_directories(temp_output_path.parent_path()); //creating output dir if needed
-
+    //Checking if output path exists(creates a directory if it does not)
+    fs::create_directories(temp_output_path.parent_path());
     std::ofstream output_file(output_path, std::ios::binary);
     if (!output_file.is_open()) {
         std::cerr<< "Error opening the output file\n";
         return PSDCompError::OUTPUT_F;
     }
 
+    //Writing compressed data to output file
     if (!output_file.write(reinterpret_cast<char*>(compressed_data.data()), compressed_size)) {
         std::cerr<< "Error writing to the output file\n";
         return PSDCompError::FILE_WRITING_F;
@@ -64,6 +71,7 @@ PSDCompError compressPSD(const std::string& input_path,
 
     output_file.close();
 
+    // Printing the size of original and compressed file
     printCompSize(temp_input_path, temp_output_path);
 
     return PSDCompError::SUCCESS;

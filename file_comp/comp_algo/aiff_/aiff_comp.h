@@ -17,11 +17,13 @@ enum class AudioCompError_AIFF {
     UNSUPPORTED_FORMAT
 };
 
-AudioCompError_AIFF compressAifftoMp3(const std::string& input_path,
-                                      const std::string& output_path,
-                                      int bitrate,
-                                      int quality,
-                                      void (*progressBar)(int) = nullptr);
+AudioCompError_AIFF
+compressAifftoMp3(
+    const std::string& input_path,
+    const std::string& output_path,
+    int bitrate,
+    int quality,
+    void (*progressBar)(int) = nullptr);
 
 void progressBar (int percentage);
 

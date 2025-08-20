@@ -18,9 +18,11 @@ enum class TIFFCompError {
     UNSUPPORTED_FORMAT
 };
 
-TIFFCompError compressTiff(const std::string& input_path,
-                           const std::string& output_path,
-                           int compression_scheme = COMPRESSION_ADOBE_DEFLATE);
+TIFFCompError
+compressTiff(
+    const std::string& input_path,
+    const std::string& output_path,
+    int compression_scheme = COMPRESSION_ADOBE_DEFLATE);
 
 
 #endif

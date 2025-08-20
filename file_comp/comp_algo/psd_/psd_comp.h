@@ -18,8 +18,10 @@ enum class PSDCompError {
     UNSUPPORTED_FORMAT
 };
 
-PSDCompError compressPSD(const std::string& input_path,
-                         const std::string& output_path);
+PSDCompError
+compressPSD(
+    const std::string& input_path,
+    const std::string& output_path);
 
 
 #endif
