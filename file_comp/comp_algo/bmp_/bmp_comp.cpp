@@ -15,7 +15,6 @@ bmpToPng(
     const std::string &input_path,
     const std::string &output_path,
     int compression) {
-
     //temp path variables to check difference between raw and compressed file later
     fs::path temp_input_path = input_path;
     fs::path temp_output_path = output_path;
@@ -41,10 +40,10 @@ bmpToPng(
     //Making a char array and loading it with data through stbi
     std::unique_ptr<unsigned char[], void(*)(void *)>
             data(stbi_load(
-                input_path.c_str(),
-                        &width, &height, &channels,
-                        STBI_rgb),
-                stbi_image_free);
+                     input_path.c_str(),
+                     &width, &height, &channels,
+                     STBI_rgb),
+                 stbi_image_free);
 
     //Checking if data was successfully initialized
     if (!data) {
@@ -72,9 +71,8 @@ bmpToPng(
     const int stride = width * channels;
     if (!stbi_write_png(
         output_path.c_str(),
-                width, height, channels,
-                data.get(), stride)) {
-
+        width, height, channels,
+        data.get(), stride)) {
         std::cerr << "Error saving PNG\n";
         return BMPCompError::ENCODING_F;
     }

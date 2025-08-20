@@ -72,14 +72,14 @@ compressAifftoMp3(
     // Encoding in chunks
     constexpr size_t CHUNK_SAMPLES = 8192;
     std::vector<unsigned char> mp3_buffer(CHUNK_SAMPLES * 1.25 + 7200); //recommended buffer size
-    size_t processed_samples = 0;
+    std::size_t processed_samples = 0;
 
     for (int i = 0; i < pcm_data.size(); i += CHUNK_SAMPLES * num_channels) {
-        size_t remaining
-                = std::min(
-                    CHUNK_SAMPLES,
-                    (pcm_data.size() - i) / num_channels
-                );
+        std::size_t remaining =
+                        std::min(
+                            CHUNK_SAMPLES,
+                            (pcm_data.size() - i) / num_channels
+                        );
 
         int mp3_bytes{};
 
