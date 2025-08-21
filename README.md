@@ -53,7 +53,7 @@ The File Compression is a high-performance, multi-format compression tool design
 
 | Original Format | Compressed Format      | Extension |
 |-----------------|------------------------|-----------|
-| TXT             | Compressed Text        | .gz       |
+| TXT             | Compressed Text        | .z       |
 | BMP             | Compressed Bitmap      | .png      |
 | TIFF            | Compressed TIFF        | .gz       |
 | PSD             | Compressed Photoshop   | .psd      |
