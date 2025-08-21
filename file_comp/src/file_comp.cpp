@@ -17,8 +17,6 @@ File_compressor::File_compressor(){
 
 void  File_compressor::choice() {
     getSrc_user();
-    //getDst();
-
 }
 
 void File_compressor::getSrc_user(){
@@ -41,26 +39,6 @@ void File_compressor::getSrc_user(){
    }
 }
 
-//Dont really need a destination path for now, will just output the compressed file in the same dir
-/*void File_compressor::getDst_user(){
-   std::string dst;
-   std::cout<<"Enter the destination: ";
-
-   while(true){
-      std::getline(std::cin>>std::ws, dst);
-
-      fs::path temp_dst{dst};
-      if(exists(temp_dst) && fs::is_regular_file((temp_dst))){
-        setDst(temp_dst);
-          break;
-      }
-      else{
-        std::cerr<<"Destination does not exist\n";
-        std::cout<<"Please enter a valid destination: \n";
-      }
-   }
-}*/
-
 int File_compressor::checkType() const {
     fs::path check_type = getSrc_path();
 
@@ -69,11 +47,10 @@ int File_compressor::checkType() const {
 
     //map to store and match the corresponding extension of file entered by the use
     static const std::unordered_map<std::string, Type> ext_to_type = {
-        {".txt",  Type::TXT},    {".jpg",  Type::JPG},    {".jpeg", Type::JPG},
-        {".png",  Type::PNG},    {".bmp",  Type::BMP},    {".tiff", Type::TIFF},
-        {".psd",  Type::PSD},    {".log",  Type::LOG},    {".csv",  Type::CSV},
-        {".wav",  Type::WAV},    {".xml",  Type::XML},    {".aiff", Type::AIFF},
-        {".json", Type::JSON},   {".tar",  Type::TAR},    {".vhd",  Type::VHD}
+        {".txt",  Type::TXT},{".bmp",  Type::BMP},    {".tiff", Type::TIFF},
+        {".psd",  Type::PSD},{".log",  Type::LOG},    {".csv",  Type::CSV},
+        {".wav",  Type::WAV},{".xml",  Type::XML},    {".aiff", Type::AIFF},
+        {".json", Type::JSON}
     };
 
     auto it = ext_to_type.find(ext);
@@ -99,16 +76,6 @@ void compress_switch(File_compressor& cr) {
                    src_path.parent_path().string());
       std::cout<<"Ending compression!\n";
       break;
-
-    case Type::PNG :
-      std::cout<<".png detected... starting compression!\n";
-      //handel the case
-        break;
-
-    case Type::JPG :
-      std::cout<<".jpg detected... starting compression!\n";
-      //handel the case
-        break;
 
     case Type::BMP :
       std::cout<<".bmp detected... starting compression!\n";
@@ -175,19 +142,8 @@ void compress_switch(File_compressor& cr) {
                   src_path.replace_extension(".json.gz").string());
         break;
 
-    case Type::TAR :
-      std::cout<<".tar detected... starting compression!\n";
-      //handel the case
-        break;
-
-    case Type::VHD :
-      std::cout<<".vhd detected... starting compression!\n";
-      //handel the case
-        break;
-
     case Type::NO_EXIST :
       std::cout<<"File does not exist\n";
-      //handel the case
         break;
 
     default:

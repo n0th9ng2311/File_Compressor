@@ -11,13 +11,9 @@
 #include "../comp_algo/csv_/csv_comp.h"
 #include "../comp_algo/xml_/xml_comp.h"
 #include "../comp_algo/json_/json_comp.h"
-#include "../comp_algo/jpg_/jpg_comp.h"
 #include "../comp_algo/log_/log_comp.h"
-#include "../comp_algo/png_/png_comp.h"
 #include "../comp_algo/psd_/psd_comp.h"
-#include "../comp_algo/tar_/tar_comp.h"
 #include "../comp_algo/tiff_/tiff_comp.h"
 #include "../comp_algo/txt_/txt_comp.h"
-#include "../comp_algo/vhd_/vhd_comp.h"
 
 #endif //ALL_COMP_ALGO_H

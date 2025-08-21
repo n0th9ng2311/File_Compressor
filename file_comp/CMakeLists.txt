@@ -20,22 +20,14 @@ add_executable(file_comp
         comp_algo/xml_/xml_comp.h
         comp_algo/json_/json_comp.cpp
         comp_algo/json_/json_comp.h
-        comp_algo/jpg_/jpg_comp.cpp
-        comp_algo/jpg_/jpg_comp.h
         comp_algo/log_/log_comp.cpp
         comp_algo/log_/log_comp.h
-        comp_algo/png_/png_comp.cpp
-        comp_algo/png_/png_comp.h
         comp_algo/psd_/psd_comp.cpp
         comp_algo/psd_/psd_comp.h
-        comp_algo/tar_/tar_comp.cpp
-        comp_algo/tar_/tar_comp.h
         comp_algo/tiff_/tiff_comp.cpp
         comp_algo/tiff_/tiff_comp.h
         comp_algo/txt_/txt_comp.cpp
         comp_algo/txt_/txt_comp.h
-        comp_algo/vhd_/vhd_comp.cpp
-        comp_algo/vhd_/vhd_comp.h
         comp_algo/aiff_/aiff_comp.cpp
         comp_algo/aiff_/aiff_comp.h
         comp_algo/wav_/wav_comp.h
@@ -46,7 +38,7 @@ add_executable(file_comp
 find_package(ZLIB REQUIRED)
 
 # Add subdirectories
-add_subdirectory(external/audio-adpcm-cpp)
+#add_subdirectory(external/audio-adpcm-cpp)
 add_subdirectory(external/lame)
 add_subdirectory(external/audioFile)
 add_subdirectory(external/libtiff)
@@ -56,7 +48,7 @@ add_subdirectory(external/libtiff)
 target_link_libraries(file_comp
         PRIVATE
         mp3lame
-        adpcm
+#        adpcm
         ZLIB::ZLIB
         AudioFile
         tiff
@@ -66,7 +58,7 @@ target_link_libraries(file_comp
 target_include_directories(file_comp
         PRIVATE
         external/lame/lame-3.100/include
-        external/audio-adpcm-cpp/include
+#        external/audio-adpcm-cpp/include
         external/audioFile
 )
 

@@ -8,8 +8,8 @@ enum class Type : int
 {
     NO_EXIST = -1,
     TXT = 1,
-    PNG = 2,
-    JPG = 3,
+    // PNG = 2,
+    // JPG = 3,
     BMP = 4,
     TIFF = 5,
     PSD = 6,
@@ -19,8 +19,8 @@ enum class Type : int
     XML = 10,
     AIFF = 11,
     JSON = 12,
-    TAR = 13,
-    VHD = 14,
+    // TAR = 13,
+    // VHD = 14,
   };
 
 namespace fs = std::filesystem;
@@ -37,7 +37,6 @@ public:
     fs::path getDst_path() const {return m_dst_path;} //helper fcn to get the destination location of file
 
     void getSrc_user();    //Fcn to take the src from user
-    //void getDst_user();  //reason in file_comp.cpp
 
     void choice();         //Fcn to get src path from user
 
