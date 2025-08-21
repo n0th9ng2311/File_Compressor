@@ -1,6 +1,4 @@
-//
-// Created by n0th9ng on 16-07-2025.
-//
+
 
 #ifndef TXT_COMP_H
 #define TXT_COMP_H
@@ -20,11 +18,15 @@ enum class TXTCompError {
     OUTPUT_F,
     UNSUPPORTED_FORMAT
 };
-TXTCompError compressFile(const std::string& inputPath,
-                         const std::string& outputPath);
+TXTCompError
+compressFile(
+    const std::string& inputPath,
+    const std::string& outputPath);
 
-bool decompressFile(const std::string& inputPath,
-                    const std::string& outputPath);
+bool
+decompressFile(
+    const std::string& inputPath,
+    const std::string& outputPath);
 
 
 #endif //TXT_COMP_H

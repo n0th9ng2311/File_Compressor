@@ -6,6 +6,7 @@
 //will be fed into a switch statement that will handel the cases
 enum class Type;
 
+//helper function to fix cin after a bad input
 void fixCin() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -29,7 +30,7 @@ void File_compressor::getSrc_user(){
       std::getline(std::cin>>std::ws, src);
 
       fs::path temp_src {src};
-      if(exists(temp_src) && fs::is_regular_file((temp_src))){
+      if(exists(temp_src) && is_regular_file((temp_src))){
         setSrc(temp_src);
           break;
       }
@@ -61,11 +62,12 @@ void File_compressor::getSrc_user(){
 }*/
 
 int File_compressor::checkType() const {
-    fs::path check_type = File_compressor::getSrc_path();
+    fs::path check_type = getSrc_path();
 
     std::string ext = check_type.extension().string();
     std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
 
+    //map to store and match the corresponding extension of file entered by the use
     static const std::unordered_map<std::string, Type> ext_to_type = {
         {".txt",  Type::TXT},    {".jpg",  Type::JPG},    {".jpeg", Type::JPG},
         {".png",  Type::PNG},    {".bmp",  Type::BMP},    {".tiff", Type::TIFF},
@@ -82,8 +84,10 @@ int File_compressor::checkType() const {
     return static_cast<int>(Type::NO_EXIST);
 }
 
+//main switch to match the corresponding file to its compression function
 void compress_switch(File_compressor& cr) {
 
+    //helper variables
     auto src_path_str = cr.getSrc_path().string();
     auto src_path = cr.getSrc_path();
 

@@ -16,7 +16,9 @@ enum class XMLCompError {
     UNSUPPORTED_FORMAT
 };
 
-XMLCompError compressXML(const std::string& input_path,
-                        const std::string& output_path);
+XMLCompError
+compressXML(
+    const std::string& input_path,
+    const std::string& output_path);
 
 #endif

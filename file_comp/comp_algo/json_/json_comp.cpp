@@ -15,7 +15,8 @@ compressJSON(
         std::cerr << "Input file not exists\n";
         return JSONCompError::FILE_OPEN_F;
     }
-    if (temp_input_path.extension() != ".json" && temp_input_path.extension() != ".JSON") {
+    if (temp_input_path.extension() != ".json"
+        && temp_input_path.extension() != ".JSON") {
         std::cerr << "Input file is not a json file\n";
         return JSONCompError::INVALID_FILE_TYPE;
     }

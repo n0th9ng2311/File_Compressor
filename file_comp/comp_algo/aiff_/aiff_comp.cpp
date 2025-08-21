@@ -40,7 +40,6 @@ compressAifftoMp3(
         }
     }
 
-
     // Initialize LAME encoder
     lame_global_flags *lame = lame_init();
     if (!lame) {

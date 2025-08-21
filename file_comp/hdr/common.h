@@ -21,6 +21,9 @@
 #include<unordered_map>
 #include<algorithm>
 
+
+//Function to print size of original and compressed file with the size of compressed file
+//being displayed as a % of original size as well
 namespace fs = std::filesystem ;
 void inline printCompSize(const fs::path& input_path,const fs::path& output_path) {
     const auto inputF_size  = file_size(input_path);

@@ -17,11 +17,13 @@ enum class AudioCompError_WAV {
     UNSUPPORTED_FORMAT
 };
 
-AudioCompError_WAV compressWavToMp3(const std::string &input_path,
-                                    const std::string &output_path,
-                                    int bitrate,
-                                    int quality,
-                                    void (*progress_bar)(int) = nullptr);
+AudioCompError_WAV
+compressWavToMp3(
+    const std::string &input_path,
+    const std::string &output_path,
+    int bitrate,
+    int quality,
+    void (*progress_bar)(int) = nullptr);
 
 void printProgress(int percent);
 
