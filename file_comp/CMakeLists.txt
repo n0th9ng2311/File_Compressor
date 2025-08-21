@@ -37,8 +37,11 @@ add_executable(file_comp
 # Find packages
 find_package(ZLIB REQUIRED)
 
+
+# Disable building tests for AudioFile
+set(BUILD_TESTS OFF CACHE BOOL "Disable tests" FORCE)
+
 # Add subdirectories
-#add_subdirectory(external/audio-adpcm-cpp)
 add_subdirectory(external/lame)
 add_subdirectory(external/audioFile)
 add_subdirectory(external/libtiff)
@@ -48,7 +51,6 @@ add_subdirectory(external/libtiff)
 target_link_libraries(file_comp
         PRIVATE
         mp3lame
-#        adpcm
         ZLIB::ZLIB
         AudioFile
         tiff
@@ -58,7 +60,6 @@ target_link_libraries(file_comp
 target_include_directories(file_comp
         PRIVATE
         external/lame/lame-3.100/include
-#        external/audio-adpcm-cpp/include
         external/audioFile
 )
 
